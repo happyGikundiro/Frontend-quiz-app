@@ -1,4 +1,4 @@
-    const quizzes = [
+   export const QUIZZES = [
         {
             "title": "HTML",
             "icon": "./assets/images/icon-html.svg",

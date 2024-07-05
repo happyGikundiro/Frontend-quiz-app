@@ -1,1 +1,27 @@
-<p>quiz works!</p>
+<div class="quiz-container">
+    <h2>{{ topic }} Quiz</h2>
+    
+    <div *ngIf="currentQuestion">
+      <h3>{{ currentQuestion.question }}</h3>
+      
+      <div class="options">
+        <label *ngFor="let option of currentQuestion.options" [class.selected]="selectedOption === option">
+          <input 
+            type="radio" 
+            name="option" 
+            [value]="option" 
+            [(ngModel)]="selectedOption" 
+          />
+          {{ option }}
+        </label>
+      </div>
+  
+      <button (click)="submitAnswer()" [disabled]="!selectedOption">Submit</button>
+  
+      <div *ngIf="feedback">
+        <p [class.correct]="feedback === 'Correct!'" [class.incorrect]="feedback === 'Incorrect!'">{{ feedback }}</p>
+        <button (click)="nextQuestion()">Next Question</button>
+      </div>
+    </div>
+  </div>
+  

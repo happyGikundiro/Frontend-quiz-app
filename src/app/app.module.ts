@@ -7,6 +7,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { ResultComponent } from './pages/result/result.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+import { ModeComponent } from './services/mode/mode.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HomeComponent,
     QuizComponent,
     ResultComponent,
-    NavbarComponent
+    NavbarComponent,
+    ModeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()
