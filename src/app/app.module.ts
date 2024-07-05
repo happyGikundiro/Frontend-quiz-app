@@ -8,7 +8,7 @@ import { QuizComponent } from './pages/quiz/quiz.component';
 import { ResultComponent } from './pages/result/result.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
-import { ModeComponent } from './services/mode/mode.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,12 +17,12 @@ import { ModeComponent } from './services/mode/mode.component';
     QuizComponent,
     ResultComponent,
     NavbarComponent,
-    ModeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
   ],
   providers: [
     provideClientHydration()

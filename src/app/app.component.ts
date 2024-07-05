@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { ModeService } from './services/mode/mode.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  // darkMode = signal<boolean>(false)
+
+  constructor(public modeService: ModeService){}
+  
 }

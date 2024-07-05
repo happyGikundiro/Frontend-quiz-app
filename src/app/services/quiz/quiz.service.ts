@@ -8,7 +8,6 @@ import { QUIZZES } from '../../db-data';
 export class QuizService {
 
   quizzes:Quiz[] = QUIZZES
-  darkMode = signal<boolean>(false)
 
   constructor() { }
 
