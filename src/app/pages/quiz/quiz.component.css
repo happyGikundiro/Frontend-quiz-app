@@ -1,33 +1,28 @@
-.quiz-container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .options {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 20px 0;
-  }
-  
-  label {
-    margin: 5px 0;
-    cursor: pointer;
-  }
-  
-  .selected {
-    border: 2px solid blue;
-  }
-  
-  button {
-    margin-top: 20px;
-  }
-  
-  .correct {
-    color: green;
-  }
-  
-  .incorrect {
-    color: red;
-  }
-  
+/* .option {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.option:hover {
+  border-color: blue;
+}
+
+.option.selected {
+  border-color: blue;
+}
+
+.option.correct {
+  border-color: green;
+}
+
+.option.incorrect {
+  border-color: red;
+} */
+
+/* quiz.component.css */
+/* .option {
+  transition: border-color 0.3s;
+} */

@@ -1,5 +1,5 @@
-import { Injectable, signal } from '@angular/core';
-import { Quiz } from '../../module/quiz';
+import { Quiz } from './../../module/quiz';
+import { Injectable } from '@angular/core';
 import { QUIZZES } from '../../db-data';
 
 @Injectable({
@@ -15,4 +15,6 @@ export class QuizService {
     const quiz = this.quizzes.find(q => q.title.toLowerCase() === topic.toLowerCase());
     return quiz ? quiz.questions : [];
   }
+
+
 }

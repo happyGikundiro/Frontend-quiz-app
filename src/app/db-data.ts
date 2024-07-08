@@ -1,7 +1,8 @@
    export const QUIZZES = [
         {
             "title": "HTML",
-            "icon": "./assets/images/icon-html.svg",
+            "icon": "../assets/images/icon-html.svg",
+            // "":"",
             "questions": [
                 {
                     "question": "What does HTML stand for?",
@@ -107,7 +108,7 @@
         },
         {
             "title": "CSS",
-            "icon": "./assets/images/icon-css.svg",
+            "icon": "../assets/images/icon-css.svg",
             "questions": [
                 {
                     "question": "What does CSS stand for?",
@@ -213,7 +214,7 @@
         },
         {
             "title": "JavaScript",
-            "icon": "./assets/images/icon-js.svg",
+            "icon": "../assets/images/icon-js.svg",
             "questions": [
                 {
                     "question": "Which syntax is correct to output 'Hello World' in an alert box?",
@@ -319,7 +320,7 @@
         },
         {
             "title": "Accessibility",
-            "icon": "./assets/images/icon-accessibility.svg",
+            "icon": "../assets/images/icon-accessibility.svg",
             "questions": [
                 {
                     "question": "What does 'WCAG' stand for?",

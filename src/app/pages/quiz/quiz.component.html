@@ -1,27 +1,74 @@
-<div class="quiz-container">
-    <h2>{{ topic }} Quiz</h2>
-    
-    <div *ngIf="currentQuestion">
-      <h3>{{ currentQuestion.question }}</h3>
-      
-      <div class="options">
-        <label *ngFor="let option of currentQuestion.options" [class.selected]="selectedOption === option">
-          <input 
-            type="radio" 
-            name="option" 
-            [value]="option" 
-            [(ngModel)]="selectedOption" 
-          />
-          {{ option }}
-        </label>
-      </div>
-  
-      <button (click)="submitAnswer()" [disabled]="!selectedOption">Submit</button>
-  
-      <div *ngIf="feedback">
-        <p [class.correct]="feedback === 'Correct!'" [class.incorrect]="feedback === 'Incorrect!'">{{ feedback }}</p>
-        <button (click)="nextQuestion()">Next Question</button>
-      </div>
-    </div>
+
+<app-navbar [selectedTopic]="selectedTopic"></app-navbar>
+<div *ngIf="currentQuestion" class="space-y-6 mt-5 md:grid md:grid-cols-2">
+  <div class="md:col-span-1 pt-8 pr-5 md:space-y-20">
+    <div class="md:h-[150px]">
+    <p class="italic text-gray-600 text-sm dark:text-[#ABC1E1] mb-2">
+
+      Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}
+    </p>
+    <h3 class="text-xl text-gray-800 font-medium dark:text-white">
+      {{ currentQuestion.question }}
+    </h3>
   </div>
+    
+    <div class="w-full bg-[#FFFFFF] dark:bg-[#3B4D66] rounded-lg overflow-hidden h-3 mt-3 p-[3px]">
+      <div [style.width.%]="progressPercentage()" class="bg-[#A729F5]  h-full rounded-md"></div>
+    </div>
+    
+  </div>
+
+  <div class="space-y-3 md:col-span-1">
+    <div
+  class="cursor-pointer transition duration-300 bg-[#FFFFFF] dark:bg-[#3B4D66] w-full rounded-[12px] flex items-center justify-between p-2.5 font-medium group"
+  *ngFor="let option of currentQuestion.options; let i = index"
+  [ngClass]="{
+    'border-2 border-[#A729F5]': selectedOption === option && !feedback,
+    'border-2 border-[#EE5454]': feedback && option === selectedOption && option !== currentQuestion.answer,
+    'border-2 border-[#26D782]': feedback && option === selectedOption && option === currentQuestion.answer
+  }"
+  (click)="selectOption(option)"
+>
+  <div class="flex items-center gap-3">
+    <span class="bg-[#F4F6FA] text-[#626C7F] py-1.5 px-3 rounded-md"
+      [ngClass]="{
+        'bg-[#aa2af9] text-[#FFFFFF]': selectedOption === option && !feedback,
+        'bg-red-500 text-[#FFFFFF]': feedback && option === selectedOption && option !== currentQuestion.answer,
+        'bg-[#24ce7c] text-[#FFFFFF]': feedback && option === selectedOption && option === currentQuestion.answer,
+        'group-hover:bg-[#F6E7FF] group-hover:text-[#A729F5]': selectedOption !== option && !feedback
+      }">
+      {{ "ABCD"[i] }}</span>
+    <p class="text-[#313E51] dark:text-[#FFFFFF]">{{ option }}</p>
+  </div>
+
+  <span *ngIf="feedback && option === currentQuestion.answer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 40 40">
+      <path fill="#26D782" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z"/>
+    </svg>
+  </span>
   
+  <span *ngIf="feedback && option !== currentQuestion.answer && option === selectedOption">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 40 40">
+      <path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z"/>
+    </svg>
+  </span>
+</div>
+
+    <button
+      (click)="handleSubmit()"
+      [disabled]="!selectedOption"
+      class="py-2.5 bg-[#A729F5] w-full text-white rounded-[12px] cursor-pointer hover:bg-[#c67ef2]"
+    >
+    {{ feedback && currentQuestionIndex === questions.length - 1 ? "Submit Answer" : feedback ? "Next Question" : "Submit Answer" }}
+    </button>
+
+    <p *ngIf="showError" class="text-sm flex items-center justify-center gap-2 text-[#EE5454] dark:text-[#FFFFFF]">
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 40 40">
+        <path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z"/>
+      </svg>
+      </span>
+      Please select an answer
+    </p>
+  </div>
+</div>

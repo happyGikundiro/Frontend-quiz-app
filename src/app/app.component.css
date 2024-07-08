@@ -1,0 +1,13 @@
+.light-mode {
+  background-color:#F4F6FA;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQwIiBoZWlnaHQ9Ijk2MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE0NDAgOTYwIj48ZyBzdHJva2U9IiNlZGYxZjkiIHN0cm9rZS13aWR0aD0iMTQ0Ij48Y2lyY2xlIGN4PSItNTAuNSIgY3k9Ijc1LjUiIHI9IjQxNi41Ii8+PGNpcmNsZSBjeD0iMTM4OC41IiBjeT0iODQwLjUiIHI9IjQxNi41Ii8+PC9nPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dark-mode {
+  background-color: #313E51;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQwIiBoZWlnaHQ9Ijk2MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE0NDAgOTYwIj48ZyBzdHJva2U9IiMyRDM5NDkiIHN0cm9rZS13aWR0aD0iMTQ0Ij48Y2lyY2xlIGN4PSItNTAuNSIgY3k9Ijc1LjUiIHI9IjQxNi41Ii8+PGNpcmNsZSBjeD0iMTM4OC41IiBjeT0iODQwLjUiIHI9IjQxNi41Ii8+PC9nPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
