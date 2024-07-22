@@ -16,7 +16,7 @@ describe('QuizService', () => {
   });
 
   it('should return questions for a given topic', () => {
-    const questions = service.getQuestions('JavaScript');
+    const questions = service.getQuestions('HTML');
     expect(questions).toEqual(QUIZZES[0].questions);
   });
 
@@ -26,7 +26,7 @@ describe('QuizService', () => {
   });
 
   it('should be case insensitive when matching topics', () => {
-    const questions = service.getQuestions('javascript');
+    const questions = service.getQuestions('html');
     expect(questions).toEqual(QUIZZES[0].questions);
   });
 });

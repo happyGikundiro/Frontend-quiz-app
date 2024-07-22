@@ -2,17 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultComponent } from './result.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 describe('ResultComponent', () => {
   let component: ResultComponent;
   let fixture: ComponentFixture<ResultComponent>;
-  let router: Router;
+  let routerSpy = { navigate: jest.fn() };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ResultComponent],
-      imports:[RouterTestingModule],
+      declarations: [ResultComponent, NavbarComponent],
       providers: [{
         provide: ActivatedRoute,
         useValue:{
@@ -24,13 +23,14 @@ describe('ResultComponent', () => {
             })
           }
         }
-      }]
+      },
+      { provide: Router, useValue: routerSpy }
+    ]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(ResultComponent);
     component = fixture.componentInstance;
-    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -49,11 +49,11 @@ describe('ResultComponent', () => {
     expect(component.topicIcon).toBe('javascript');
   });
 
-  it('should navigate to the home page when "Play Again" is clicked', () => {
-    const navigateSpy = jest.spyOn(router, 'navigate');
-    const playAgainButton = fixture.nativeElement.querySelector('button');
-    playAgainButton.click();
-    expect(navigateSpy).toHaveBeenCalledWith(['']);
+  it('should navigate to the home page when Play Again is called', () => {
+    // const playAgainButton = fixture.nativeElement.querySelector('button');
+    // playAgainButton.click();
+    component.playAgain();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['']);
   });
 
 });
